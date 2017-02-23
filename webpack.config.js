@@ -7,6 +7,9 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  plugins: [
+    new dotenv()
+  ],
   module: {
     loaders: [{
       exclude: /node_modules/,

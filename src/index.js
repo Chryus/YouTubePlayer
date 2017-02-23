@@ -1,15 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import App from './components/app';
-import reducers from './reducers';
+import axios from 'axios'
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const API_KEY = process.env.YOUTUBE_KEY
 
-ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+const App = () => {
+  return <div>HELLO WORLD</div>
+}
+
+ReactDOM.render(<App/>, document.querySelector('.container'));
