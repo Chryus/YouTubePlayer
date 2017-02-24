@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-const PropTypes = React.PropTypes;
 
 class SearchBar extends Component {
   constructor(props) {
