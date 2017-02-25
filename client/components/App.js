@@ -11,7 +11,8 @@ class App extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      videos: []
+      videos: [],
+      selectedVideo: null
     }
   }
 
@@ -19,17 +20,20 @@ class App extends Component {
     YTSearch({key: API_KEY, term: 'dwarf rabbit'}, (videos) => {
       this.setState({
         isLoading: false,
-        videos: videos
-      })
-    })
+        videos: videos,
+        selectedVideo: videos[0]
+      });
+    });
   }
 
   render() {
     return (
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]} />
-        <VideoList videos={this.state.videos} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList
+          onVideoSelect={selectedVideo => this.setState({selectedVideo}) } 
+          videos={this.state.videos} />
       </div>
     );
   }
