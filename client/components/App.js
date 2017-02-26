@@ -12,12 +12,21 @@ class App extends Component {
     this.state = {
       isLoading: true,
       videos: [],
-      selectedVideo: null
+      selectedVideo: null,
+      searchTerm: "polish house rabbit"
     }
   }
 
   componentDidMount() {
-    YTSearch({key: API_KEY, term: 'dwarf rabbit'}, (videos) => {
+    this.youtubeSearch();
+  }
+
+  componentWillUpdate() {
+    this.youtubeSearch();
+  }
+
+  youtubeSearch() {
+    YTSearch({key: API_KEY, term: this.state.searchTerm}, (videos) => {
       this.setState({
         isLoading: false,
         videos: videos,
@@ -29,7 +38,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar 
+          onSearchTermUpdate={searchTerm => this.setState({searchTerm}) }/>
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo}) } 

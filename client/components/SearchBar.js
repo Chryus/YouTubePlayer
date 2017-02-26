@@ -4,18 +4,23 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = { term: "" };
+    this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
+  }
+
+  handleSearchTermChange(e) {
+    const term = e.target.value;
+    this.setState({term});
+    this.props.onSearchTermUpdate(term);
   }
 
   render() {
     return (
-      <div className="jumbotron">
-        <h1>Search for: {this.state.term}</h1>
+      <div className="search-bar">
         <input
-          className="form-control"
-          placeholder="Search"
+          placeholder=" Search"
           type="text"
           value={this.state.term}
-          onChange={(event) => this.setState({term: event.target.value})} />
+          onChange={this.handleSearchTermChange} />
       </div>
     );
   }
