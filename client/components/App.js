@@ -3,6 +3,7 @@ import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 import YTSearch from 'youtube-api-search';
+import _ from 'lodash';
 
 const API_KEY = process.env.YOUTUBE_KEY;
 
@@ -36,10 +37,11 @@ class App extends Component {
   }
 
   render() {
+    const videoSearch = _.debounce((searchTerm) => { this.setState({searchTerm}) }, 300);
     return (
       <div>
         <SearchBar 
-          onSearchTermUpdate={searchTerm => this.setState({searchTerm}) }/>
+          onSearchTermUpdate={videoSearch}/>
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo}) } 
