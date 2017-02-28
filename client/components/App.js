@@ -22,8 +22,8 @@ class App extends Component {
     this.youtubeSearch();
   }
 
-  componentWillUpdate() {
-    this.youtubeSearch();
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.searchTerm !== this.state.searchTerm) { return this.youtubeSearch(); }
   }
 
   youtubeSearch() {
